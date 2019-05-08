@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.example.demo.persistence.MemberDAO">
+  	
+  	<insert id="create">
+  		insert into testMember values(#{userid}, #{userpwd}, #{username}, #{email})
+  	</insert>
+  	
+  	<select id="select" resultType="com.example.demo.domain.Member">
+  		select * from testMember where userid=#{userid} and userpwd=#{userpwd}
+  	</select>
+  	
+  	<update id="update">
+  		update testMember set userpwd=#{userpwd}, username=#{username}, email=#{email} where userid=#{userid}
+  	</update>
+  	
+  	<delete id="delete">
+  		delete from testMember where userid = #{userid}
+  	</delete>
+  	
+  </mapper>
+  
+  

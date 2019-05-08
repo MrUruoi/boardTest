@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script th:inline="javascript">
+	function dataCheck(){
+		var pwdCheck = document.getElementById("pwdCheck").value;
+		if(pwdCheck == /*[[${session['loginMember'].userpwd}]]*/){
+			opener.location.href="delete";
+			this.close();
+		}else{
+			alert("パスワードが間違っています。");
+		}
+		
+	}
+	function closeWindow(){
+		this.close();
+	}
+
+</script>
+
+</head>
+<body>
+	<h2> [  アカウント削除 ] </h2>	
+	
+	
+		<input th:value="${session['loginMember'].userid}" type="text" id="userid" name="userid" readonly="readonly"><br>	
+		<input type="password" id="pwdCheck" name="pwdCheck" placeholder="パスワードを入力してください。">
+	
+		<input type="submit" value="削除" onclick="return dataCheck()">
+		<input type="button" value="キャンセル"  onclick="return closeWindow()">
+	
+</body>
+</html>

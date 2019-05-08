@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>会員掲示板</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script th:inline="javascript">
+	$(document).ready(function(){
+		if(/*[[${msg}]]*/)	
+			alert(/*[[${msg}]]*/);
+		
+	});
+	
+	function confirmLogout(){
+		if(confirm("ログアウトしますか？"))
+			location.href = "/logout";
+	}
+	
+	function confirmDelete(){
+		window.open("deleteForm","newWindow","top=100,left=100,width=400,height=300");
+		
+	}
+	
+	
+</script>
+
+</head>
+<body>
+	<h2>[ 掲示板 ]</h2>
+	<ul th:unless="${#httpSession}">
+		<li><a th:text="'会員登録'" th:href="@{/joinForm}"></a></li>
+		<li><a th:text="'ログイン'" th:href="@{/loginForm}"></a></li>
+	</ul>
+	
+	<ul th:if="${#httpSession}">
+		<li><a th:text=" ${session['loginMember'].userid} + ' 様、'  + 'ログアウト' " href="javascript: confirmLogout()"></a></li>
+		<li><a th:text="${'個人情報修正'}" th:href="@{/updateForm}"></a></li>
+		<li><a th:text="${'アカウントの削除'}" href="javascript: confirmDelete()"></a></li>
+	</ul>
+	
+	<ul>
+		<li><a href="list">掲示板</a></li>
+	</ul>
+	
+</body>
+</html>

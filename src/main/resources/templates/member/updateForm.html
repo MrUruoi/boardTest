@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登録</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="joinValidation.js"></script>
+
+</head>
+<body>
+	<h2> [  個人情報修正 ] </h2>	
+	
+	<form  id="updateForm" action="update" method="post">
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<td>
+					<input th:value="${session['loginMember'].userid}" type="text" id="userid" name="userid" readonly="readonly">	
+				</td>
+			</tr>
+			<tr>
+				<th>PASSWORD</th>
+				<td>
+					<input th:value="${session['loginMember'].userpwd}" type="password" id="userpwd" name="userpwd">	
+				</td>
+			</tr>
+			<tr>
+				<th>NAME</th>
+				<td>
+					<input th:value="${session['loginMember'].username}" type="text" id="username" name="username">	
+				</td>
+			</tr>
+			<tr>
+				<th>EMAIL</th>
+				<td>
+					<input th:value="${session['loginMember'].email}" type="text" id="email" name="email">	
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					<input type="submit" value="修正" onclick="return dataCheck()">
+					<input type="button" value="キャンセル"  onclick="location.href='/'">
+				</th>
+			</tr>
+		</table>
+	</form>
+	
+</body>
+</html>
